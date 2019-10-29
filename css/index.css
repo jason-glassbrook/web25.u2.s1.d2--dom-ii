@@ -350,3 +350,9 @@ img {
   background: #FFFFFF;
   color: #17A2B8;
 }
+.btn.click {
+  border-width: 8px !important;
+  font-weight: bold !important;
+  text-decoration: underline !important;
+  background-color: Gold !important;
+}
