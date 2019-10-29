@@ -51,7 +51,7 @@ Using the 10 unique events, find ways to update the DOM in creative ways. For ex
 *   [ ] Nest two similar events somewhere in the site and prevent the event propagation properly
 *   [ ] Stop the navigation from items from refreshing the page by using `preventDefault()`
 
-## Stretch Task:
+## Stretch Task
 
 *   [ ] Go look at [GSAP](https://greensock.com/) and implement the animations found in that library with your custom events.
 
