@@ -11,7 +11,7 @@
 /// "clamp" number between lower and upper bounds ///
 Math.clamp = function (x , lower , upper) {
   return (
-    Math.min (Math.max (x , upper) , lower)
+    Math.min (Math.max (x , lower) , upper)
   );
 }
 
@@ -35,12 +35,7 @@ Math.randomIntWithin = function (lower , upper) {
   RGB colors
 ***************************************/
 
-const rgb = {
-  fromHex: (()=>{}),
-  mod:     (()=>{}),
-  clamp:   (()=>{}),
-  toCss:   (()=>{})
-};
+const rgb = {};
 
 /// convert css hex string to rgb channels ///
 rgb.fromCssHex = function (hexString) { // doesn't protect against keyword colors
@@ -79,7 +74,7 @@ rgb.mod = function (channels) {
 rgb.clamp = function (channels) {
   return (
     channels.map(
-      (c) => (Math.clamp(c , 0 , 255))
+      (c) => (Math.clamp (c , 0 , 255))
     )
   );
 };
@@ -129,13 +124,14 @@ const headingMouseOver = function (el) {
   );
   // define color changing function
   const changeElementColor = function (ev) {
-    console.log (color);
     // generate random rgb offset
     const offset = color.map (
       () => (Math.randomIntWithin (-50 , +50))
     );
-    console.log (offset);
     // add offset and clamp
+    console.log (color.map (
+      (c , i) => (c + offset[i])
+    ));
     color = rgb.clamp (
       color.map (
         (c , i) => (c + offset[i])
