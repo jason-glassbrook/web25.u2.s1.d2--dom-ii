@@ -42,36 +42,44 @@ const rgb = {
   toCss:   (()=>{})
 };
 
-/// convert hex to rgb channels ///
-rgb.fromHex = function (hexColor) { // doesn't protect against keyword colors
-  const r = parseInt(hexColor.substr(1,2), 16);
-  const g = parseInt(hexColor.substr(3,2), 16);
-  const b = parseInt(hexColor.substr(5,2), 16);
-  return (
-    [r , g , b]
-  );
+/// convert css hex string to rgb channels ///
+rgb.fromCssHex = function (hexString) { // doesn't protect against keyword colors
+  const r = parseInt(hexString.substr(1,2), 16);
+  const g = parseInt(hexString.substr(3,2), 16);
+  const b = parseInt(hexString.substr(5,2), 16);
+  const channels = [r , g , b];
+  return (channels);
 }
 
-/// convert rgb channels to css function string
-rgb.toCss = function (cs) {
+/// convert css rgb string to rgb channels ///
+rgb.fromCssRgb = function (rgbString) { // doesn't protect against keyword colors
+  const r = parseInt(rgbString.substr(1,2), 16);
+  const g = parseInt(rgbString.substr(3,2), 16);
+  const b = parseInt(rgbString.substr(5,2), 16);
+  const channels = [r , g , b];
+  return (channels);
+}
+
+/// convert rgb channels to css rgb string
+rgb.toCssRgb = function (channels) {
   return (
-    `rgb(${cs[0]} , ${cs[1]} , ${cs[2]})`
+    `rgb(${channels[0]} , ${channels[1]} , ${channels[2]})`
   );
 }
 
 /// mod ///
-rgb.mod = function (cs) {
+rgb.mod = function (channels) {
   return (
-    cs.map(
+    channels.map(
       (c) => (c % 256)
     )
   );
 };
 
 /// clamp ///
-rgb.clamp = function (cs) {
+rgb.clamp = function (channels) {
   return (
-    cs.map(
+    channels.map(
       (c) => (Math.clamp(c , 0 , 255))
     )
   );
@@ -117,7 +125,9 @@ const headingHoverClass = "heading-hover";
 // this returns another function that has a unique closure state
 const headingMouseOver = function (el) {
   // get original color to modify in closure
-  let color = rgb.fromHex (el.style.color);
+  let color = rgb.fromCssRgb (
+    getComputedStyle (el).color // AAAAHHHHH -- el.style is the INLINE style
+  );
   console.log (color);
   // define color changing function
   const changeElementColor = function (ev) {
@@ -132,7 +142,7 @@ const headingMouseOver = function (el) {
       )
     );
     // set color of element
-    el.style.color = rgb.toCss (color);
+    el.style.color = rgb.toCssRgb (color);
     // stop bubbles
     ev.stopPropagation ();
   };
