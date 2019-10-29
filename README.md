@@ -15,9 +15,9 @@ Fun Bus wants you to make their site more interactive. They are relying on you t
 
 **Follow these steps for completing your project:**
 
-*   [ ] Submit a pull-request to merge your `<firstName-lastName>` branch into the `master` branch (of ***your*** repository, not Lambda's). **Please don't merge your own pull request.**
-*   [ ] Add your project manager as a reviewer on the pull-request.
-*   [ ] Your project manager will count the project as complete by merging your branch into `master`.
+*   [x] Submit a pull-request to merge your `<firstName-lastName>` branch into the `master` branch (of ***your*** repository, not Lambda's). **Please don't merge your own pull request.**
+*   [x] Add your project manager as a reviewer on the pull-request.
+*   [x] Your project manager will count the project as complete by merging your branch into `master`.
 
 ## Task 1: Set Up LESS Preprocessor
 
