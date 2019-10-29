@@ -117,7 +117,7 @@ const imageMouseOut = function (ev) {
 const headingHoverClass = "heading-hover";
 
 // this returns another function that has a unique closure state
-const headingMouseOver = function (el) {
+const headingMouseOver = function (el , colorDelta) {
   // get original color to modify in closure
   let color = rgb.fromCssRgb (
     getComputedStyle (el).color // AAAAHHHHH -- el.style is the INLINE style
@@ -126,21 +126,17 @@ const headingMouseOver = function (el) {
   const changeElementColor = function (ev) {
     // generate random rgb offset
     const offset = color.map (
-      () => (Math.randomIntWithin (-50 , +50))
+      () => (Math.randomIntWithin (-colorDelta , +colorDelta))
     );
     // add offset and clamp
-    console.log (color.map (
-      (c , i) => (c + offset[i])
-    ));
     color = rgb.clamp (
       color.map (
         (c , i) => (c + offset[i])
       )
     );
-    console.log (color);
     // set color of element
     el.style.color = rgb.toCssRgb (color);
-    console.log (rgb.toCssRgb (color));
+    el.style.transition = "color 0.5s";
     // stop bubbles
     ev.stopPropagation ();
   };
@@ -174,6 +170,6 @@ images.forEach (
 const headings = document.querySelectorAll ("h1 , h2 , h3 , h4 , h5 , h6");
 headings.forEach (
   (el) => {
-    el.addEventListener ("mouseover" , headingMouseOver (el));
+    el.addEventListener ("mouseover" , headingMouseOver (el , 255));
   }
 )
