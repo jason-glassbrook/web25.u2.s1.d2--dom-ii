@@ -53,10 +53,9 @@ rgb.fromCssHex = function (hexString) { // doesn't protect against keyword color
 
 /// convert css rgb string to rgb channels ///
 rgb.fromCssRgb = function (rgbString) { // doesn't protect against keyword colors
-  const r = parseInt(rgbString.substr(1,2), 16);
-  const g = parseInt(rgbString.substr(3,2), 16);
-  const b = parseInt(rgbString.substr(5,2), 16);
-  const channels = [r , g , b];
+  const channels = Array.from (rgbString.matchAll (/\d+/g) ,
+    (m) => (parseInt(m[0]))
+  );
   return (channels);
 }
 
@@ -128,21 +127,24 @@ const headingMouseOver = function (el) {
   let color = rgb.fromCssRgb (
     getComputedStyle (el).color // AAAAHHHHH -- el.style is the INLINE style
   );
-  console.log (color);
   // define color changing function
   const changeElementColor = function (ev) {
+    console.log (color);
     // generate random rgb offset
     const offset = color.map (
-      () => (Math.randomIntWithin (-5 , +5))
+      () => (Math.randomIntWithin (-50 , +50))
     );
+    console.log (offset);
     // add offset and clamp
     color = rgb.clamp (
       color.map (
         (c , i) => (c + offset[i])
       )
     );
+    console.log (color);
     // set color of element
     el.style.color = rgb.toCssRgb (color);
+    console.log (rgb.toCssRgb (color));
     // stop bubbles
     ev.stopPropagation ();
   };
