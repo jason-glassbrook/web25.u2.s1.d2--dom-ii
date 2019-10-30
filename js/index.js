@@ -144,6 +144,14 @@ const headingMouseOver = function (el , colorDelta) {
   return (changeElementColor);
 };
 
+/// wheel ///
+const paragraphWheelClass = "paragraph-wheel";
+
+const paragraphWheel = function (ev) {
+  ev.target.classList.toggle (paragraphWheelClass);
+  ev.stopPropagation ();
+}
+
 /***********************************************************
   add events
 ***********************************************************/
@@ -173,3 +181,11 @@ headings.forEach (
     el.addEventListener ("mouseover" , headingMouseOver (el , 255));
   }
 )
+
+/// wheel ///
+const paragraphs = document.querySelectorAll ("p");
+paragraphs.forEach (
+  (el) => {
+    el.addEventListener ("wheel" , paragraphWheel);
+  }
+);
