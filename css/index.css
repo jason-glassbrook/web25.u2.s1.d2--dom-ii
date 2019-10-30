@@ -364,3 +364,9 @@ p.paragraph-wheel {
   filter: blur(10px);
   transition: filter 0.5s;
 }
+p.paragraph-click {
+  color: Red;
+}
+div.div-click {
+  background-color: Red;
+}

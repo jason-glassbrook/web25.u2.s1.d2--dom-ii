@@ -152,6 +152,21 @@ const paragraphWheel = function (ev) {
   ev.stopPropagation ();
 }
 
+/// click ///
+const paragraphClickClass = "paragraph-click";
+
+const paragraphClick = function (ev) {
+  ev.target.classList.toggle (paragraphClickClass);
+  ev.stopPropagation ();
+}
+
+const divClickClass = "div-click";
+
+const divClick = function (ev) {
+  ev.target.classList.toggle (divClickClass);
+  ev.stopPropagation ();
+}
+
 /***********************************************************
   add events
 ***********************************************************/
@@ -187,5 +202,20 @@ const paragraphs = document.querySelectorAll ("p");
 paragraphs.forEach (
   (el) => {
     el.addEventListener ("wheel" , paragraphWheel);
+  }
+);
+
+/// click ///
+// const paragraphs = document.querySelectorAll ("p");
+paragraphs.forEach (
+  (el) => {
+    el.addEventListener ("click" , paragraphClick);
+  }
+);
+
+const divs = document.querySelectorAll ("div");
+divs.forEach (
+  (el) => {
+    el.addEventListener ("click" , divClick);
   }
 );
