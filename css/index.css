@@ -370,3 +370,9 @@ p.paragraph-click {
 div.div-click {
   background-color: Red;
 }
+.window-scroll {
+  background-color: Green;
+}
+.window-resize {
+  background-color: Blue;
+}

@@ -89,6 +89,8 @@ const headingHoverClass   = "heading-hover";
 const paragraphWheelClass = "paragraph-wheel";
 const paragraphClickClass = "paragraph-click";
 const divClickClass       = "div-click";
+const windowScrollClass   = "window-scroll";
+const windowResizeClass   = "window-resize";
 
 /// mousedown + mouseup ///
 const buttonMouseDown = function (ev) {
@@ -160,6 +162,18 @@ const divClick = function (ev) {
   ev.stopPropagation ();
 }
 
+/// scroll ///
+const windowScroll = function (ev) {
+  body.classList.toggle (windowScrollClass);
+  ev.stopPropagation ();
+};
+
+/// resize ///
+const windowResize = function (ev) {
+  body.classList.toggle (windowResizeClass);
+  ev.stopPropagation ();
+};
+
 /***********************************************************
   add events
 ***********************************************************/
@@ -169,6 +183,7 @@ const images     = document.querySelectorAll ("img");
 const headings   = document.querySelectorAll ("h1 , h2 , h3 , h4 , h5 , h6");
 const paragraphs = document.querySelectorAll ("p");
 const divs       = document.querySelectorAll ("div");
+const body       = document.querySelector ("body");
 
 /// mousedown + mouseup ///
 buttons.forEach (
@@ -213,4 +228,8 @@ divs.forEach (
   }
 );
 
+/// scroll ///
+window.addEventListener ("scroll" , windowScroll);
 
+/// resize ///
+window.addEventListener ("resize" , windowResize);
