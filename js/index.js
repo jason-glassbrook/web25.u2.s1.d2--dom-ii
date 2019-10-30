@@ -83,39 +83,39 @@ rgb.clamp = function (channels) {
   event functions
 ***********************************************************/
 
-/// mousedown + mouseup ///
-const buttonClickClass = "button-click";
+const buttonClickingClass = "button-clicking";
+const imageHoverClass = "image-hover";
+const headingHoverClass = "heading-hover";
+const paragraphWheelClass = "paragraph-wheel";
+const paragraphClickClass = "paragraph-click";
+const divClickClass = "div-click";
 
+/// mousedown + mouseup ///
 const buttonMouseDown = function (ev) {
   if (ev.button === 0) { // left button pressed
-    ev.target.classList.add (buttonClickClass);
+    ev.target.classList.add (buttonClickingClass);
   }
   ev.stopPropagation ();
 };
 
 const buttonMouseUp = function (ev) {
   if (ev.button === 0) { // left button pressed
-    ev.target.classList.remove (buttonClickClass);
+    ev.target.classList.remove (buttonClickingClass);
   }
   ev.stopPropagation ();
 };
 
 /// mouseenter + mouseleave ///
-const imageHoverClass = "image-hover";
-
 const imageMouseIn = function (ev) {
   ev.target.classList.add (imageHoverClass);
   ev.stopPropagation ();
 };
-
 const imageMouseOut = function (ev) {
   ev.target.classList.remove (imageHoverClass);
   ev.stopPropagation ();
 };
 
 /// mouseover ///
-const headingHoverClass = "heading-hover";
-
 // this returns another function that has a unique closure state
 const headingMouseOver = function (el , colorDelta) {
   // get original color to modify in closure
@@ -145,23 +145,16 @@ const headingMouseOver = function (el , colorDelta) {
 };
 
 /// wheel ///
-const paragraphWheelClass = "paragraph-wheel";
-
 const paragraphWheel = function (ev) {
   ev.target.classList.toggle (paragraphWheelClass);
   ev.stopPropagation ();
 }
 
 /// click ///
-const paragraphClickClass = "paragraph-click";
-
 const paragraphClick = function (ev) {
   ev.target.classList.toggle (paragraphClickClass);
   ev.stopPropagation ();
 }
-
-const divClickClass = "div-click";
-
 const divClick = function (ev) {
   ev.target.classList.toggle (divClickClass);
   ev.stopPropagation ();
@@ -171,8 +164,13 @@ const divClick = function (ev) {
   add events
 ***********************************************************/
 
-/// mousedown + mouseup ///
 const buttons = document.querySelectorAll (".btn");
+const images = document.querySelectorAll ("img");
+const headings = document.querySelectorAll ("h1 , h2 , h3 , h4 , h5 , h6");
+const paragraphs = document.querySelectorAll ("p");
+const divs = document.querySelectorAll ("div");
+
+/// mousedown + mouseup ///
 buttons.forEach (
   (el) => {
     el.addEventListener ("mousedown" , buttonMouseDown);
@@ -181,7 +179,6 @@ buttons.forEach (
 );
 
 /// mouseenter + mouseleave ///
-const images = document.querySelectorAll ("img");
 images.forEach (
   (el) => {
     el.addEventListener ("mouseenter" , imageMouseIn);
@@ -190,7 +187,6 @@ images.forEach (
 );
 
 /// mouseover ///
-const headings = document.querySelectorAll ("h1 , h2 , h3 , h4 , h5 , h6");
 headings.forEach (
   (el) => {
     el.addEventListener ("mouseover" , headingMouseOver (el , 255));
@@ -198,7 +194,6 @@ headings.forEach (
 )
 
 /// wheel ///
-const paragraphs = document.querySelectorAll ("p");
 paragraphs.forEach (
   (el) => {
     el.addEventListener ("wheel" , paragraphWheel);
@@ -206,16 +201,16 @@ paragraphs.forEach (
 );
 
 /// click ///
-// const paragraphs = document.querySelectorAll ("p");
 paragraphs.forEach (
   (el) => {
     el.addEventListener ("click" , paragraphClick);
   }
 );
 
-const divs = document.querySelectorAll ("div");
 divs.forEach (
   (el) => {
     el.addEventListener ("click" , divClick);
   }
 );
+
+
