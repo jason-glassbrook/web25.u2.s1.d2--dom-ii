@@ -84,11 +84,11 @@ rgb.clamp = function (channels) {
 ***********************************************************/
 
 const buttonClickingClass = "button-clicking";
-const imageHoverClass = "image-hover";
-const headingHoverClass = "heading-hover";
+const imageHoverClass     = "image-hover";
+const headingHoverClass   = "heading-hover";
 const paragraphWheelClass = "paragraph-wheel";
 const paragraphClickClass = "paragraph-click";
-const divClickClass = "div-click";
+const divClickClass       = "div-click";
 
 /// mousedown + mouseup ///
 const buttonMouseDown = function (ev) {
@@ -164,11 +164,11 @@ const divClick = function (ev) {
   add events
 ***********************************************************/
 
-const buttons = document.querySelectorAll (".btn");
-const images = document.querySelectorAll ("img");
-const headings = document.querySelectorAll ("h1 , h2 , h3 , h4 , h5 , h6");
+const buttons    = document.querySelectorAll (".btn");
+const images     = document.querySelectorAll ("img");
+const headings   = document.querySelectorAll ("h1 , h2 , h3 , h4 , h5 , h6");
 const paragraphs = document.querySelectorAll ("p");
-const divs = document.querySelectorAll ("div");
+const divs       = document.querySelectorAll ("div");
 
 /// mousedown + mouseup ///
 buttons.forEach (
