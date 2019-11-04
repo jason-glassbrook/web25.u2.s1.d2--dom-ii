@@ -350,3 +350,29 @@ img {
   background: #FFFFFF;
   color: #17A2B8;
 }
+.btn.button-clicking {
+  border-width: 8px !important;
+  font-weight: bold !important;
+  text-decoration: underline !important;
+  background-color: Gold !important;
+}
+img.image-hover {
+  filter: grayscale(100%);
+  transition: filter 0.5s;
+}
+p.paragraph-wheel {
+  filter: blur(10px);
+  transition: filter 0.5s;
+}
+p.paragraph-click {
+  color: Red;
+}
+div.div-click {
+  background-color: Red;
+}
+.window-scroll {
+  background-color: Green;
+}
+.window-resize {
+  background-color: Blue;
+}
